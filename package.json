@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx hardhat node & sleep 5 && npx hardhat test"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "commander": "^12.0.0",
     "ethers": "^6.12.0",
     "hardhat": "^2.22.3"

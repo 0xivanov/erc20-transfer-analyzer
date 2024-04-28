@@ -54,25 +54,3 @@ node index.js --provider <provider-url> --contract <contract-address> --addresse
 ```
 
 Replace `<provider-url>`, `<contract-address>`, `<addresses-list>`, and `<blocks-count>` with your desired values.
-
-### Output
-
-The script will generate a `transfers.json` file in the project directory containing the filtered ERC20 token transfer data.
-
-## Improvement Suggestions
-
-1. **Security**: Consider using environment variables or a secure configuration management solution to store sensitive information such as provider URLs and contract addresses.
-
-2. **Scalability**: Implement pagination or batch processing for fetching large amounts of transfer data to avoid hitting API rate limits.
-
-3. **Maintainability**: Refactor the code into smaller, modular functions with descriptive names and clear documentation to improve readability and maintainability.
-
-4. **Speed**: Use asynchronous processing and concurrency techniques to speed up data fetching and processing, especially for large datasets.
-
-5. **Third-party Tools**: Explore using libraries like `web3.js` or `ethers.js` for interacting with Ethereum blockchain data, which provide higher-level abstractions and better support for Ethereum-specific functionality.
-
-6. **Error Handling**: Enhance error handling to provide more descriptive error messages and handle edge cases more gracefully.
-
-7. **Unit Testing**: Write unit tests to ensure the correctness of the script's functionality and prevent regressions when making changes.
-
-8. **Logging**: Implement logging functionality to capture important events, errors, and debugging information during script execution.

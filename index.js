@@ -29,8 +29,9 @@ async function getERC20TransfersWithTimeout(providerUrl, contractAddress, addres
 
     if (filteredTransfers.length === 0) {
       console.log('No transfers found matching the specified criteria.');
-      process.exit(0); // Exit gracefully
+      return
     }
+
     // Extract relevant transfer information
     const extractedTransfers = await extractTransferInfo(providerUrl, filteredTransfers);
     // Write transfers to file
@@ -39,8 +40,7 @@ async function getERC20TransfersWithTimeout(providerUrl, contractAddress, addres
     return extractedTransfers;
   } catch (error) {
     clearTimeout(timeout);
-    console.error('Error:', error);
-    process.exit(1); // Halt the application
+    throw error;
   }
 }
 
@@ -88,7 +88,6 @@ async function extractTransferInfo(providerUrl, transfers) {
   }));
 }
 
-
 function writeTransfersToFile(transfers) {
   const fileName = 'transfers.json';
   const formattedTransfers = JSON.stringify(transfers, null, 2);
@@ -97,15 +96,24 @@ function writeTransfersToFile(transfers) {
   console.log(`Transfers written to ${fileName}`);
 }
 
-const providerUrl = program.opts().provider;
-const contractAddress = program.opts().contract;
-const addressesList = program.opts().addresses.split(',');
-const blocksCount = program.opts().blocks;
+// Check if program options are provided
+if (Object.keys(program.opts()).length > 0) {
+  const providerUrl = program.opts().provider;
+  const contractAddress = program.opts().contract;
+  const addressesList = program.opts().addresses.split(',');
+  const blocksCount = program.opts().blocks;
 
-getERC20TransfersWithTimeout(providerUrl, contractAddress, addressesList, blocksCount)
-  .then(transfers => {
-    // console.log(transfers);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+  getERC20TransfersWithTimeout(providerUrl, contractAddress, addressesList, blocksCount)
+    .then(transfers => {
+      // Gracefully exit the program
+      process.exit(0);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      process.exit(1); // Halt the application
+    });
+}
+
+module.exports = {
+  getERC20TransfersWithTimeout
+};
