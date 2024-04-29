@@ -29,6 +29,8 @@ async function getERC20TransfersWithTimeout(providerUrl, contractAddress, addres
 
     if (filteredTransfers.length === 0) {
       console.log('No transfers found matching the specified criteria.');
+      // Write transfers to file
+      writeTransfersToFile(filteredTransfers);
       return
     }
 

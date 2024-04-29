@@ -1,12 +1,12 @@
 {
-  "name": "erc20_part1",
+  "name": "erc20-transfer-analyzer",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx hardhat node & sleep 5 && npx hardhat test"
+    "test": "npx hardhat node & sleep 5 && npx hardhat test && killall node"
   },
-  "author": "",
+  "author": "0xivanov",
   "license": "ISC",
   "dependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",

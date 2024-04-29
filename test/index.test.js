@@ -37,8 +37,23 @@ describe('ERC20 Token Transfer Analyzer', function () {
     // Read transfers.json file and check the number of transfers recorded
     const transfersData = fs.readFileSync('transfers.json', 'utf8');
     const transfers = JSON.parse(transfersData);
-    console.log(transfers)
     expect(transfers).to.be.an('array');
     expect(transfers).to.have.lengthOf(2); // expect two transfers are recorded
+  });
+
+
+  it('should record transfers of empty array', async function () {
+    // Run your script to analyze transfers and generate transfers.json
+    const providerUrl = 'http://localhost:8545';
+    const addressesList = [accounts[4].address];
+    const blocksCount = 10;
+
+    await getERC20TransfersWithTimeout(providerUrl, tokenContract.target, addressesList, blocksCount);
+
+    // Read transfers.json file and check the number of transfers recorded
+    const transfersData = fs.readFileSync('transfers.json', 'utf8');
+    const transfers = JSON.parse(transfersData);
+    expect(transfers).to.be.an('array');
+    expect(transfers).to.have.lengthOf(0); // expect two transfers are recorded
   });
 });

@@ -18,19 +18,7 @@ This Node.js script allows you to analyze ERC20 token transfers on the Ethereum 
 
 ### Installation
 
-1. Clone this repository to your local machine:
-
-```bash
-git clone https://github.com/yourusername/erc20-token-transfer-analyzer.git
-```
-
-2. Navigate to the project directory:
-
-```bash
-cd erc20-token-transfer-analyzer
-```
-
-3. Install dependencies:
+1. Install dependencies:
 
 ```bash
 npm install
@@ -54,3 +42,12 @@ node index.js --provider <provider-url> --contract <contract-address> --addresse
 ```
 
 Replace `<provider-url>`, `<contract-address>`, `<addresses-list>`, and `<blocks-count>` with your desired values.
+Example `<contract-address>` is `0x943498b40d90c1000ca36f06010d970ccc47197f`
+
+### Tests
+
+The project includes unit tests to ensure the functionality of the script. You can run the tests using the following command:
+
+```bash
+npm run test
+```
